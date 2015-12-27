@@ -23,7 +23,7 @@ private:
   double r0;
   //char type[];
 public:
-    YieldSpline(YieldCurve&, Date&);
+    YieldSpline(YieldCurve&, Date&, double);
     YieldSpline();
     void getForwardCurve();
     void getSpotCurve();
