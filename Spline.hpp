@@ -1,7 +1,10 @@
 std::vector<double> spline(std::vector<double> &x, std::vector<double> &y){
-    return spline(x, y, 1e30);
+    return spline(x, y, 1e30, 1e30);
 }
-std::vector<double> spline(std::vector<double> &x, std::vector<double> &y, double yp1)//, double yp1, double ypn)
+std::vector<double> spline(std::vector<double> &x, std::vector<double> &y, double yp1){
+    return spline(x, y, yp1, 1e30);
+}
+std::vector<double> spline(std::vector<double> &x, std::vector<double> &y, double yp1, double ypn)//, double yp1, double ypn)
 /*Given arrays x[0..n] and y[0..n] containing a tabulated function, i.e., yi = f(xi), with
 x1 < x2 <...< xN , and given values yp1 and ypn for the first derivative of the interpolating
 function at points 0 and n, respectively, this routine returns an array y2[0..n] that contains
@@ -33,13 +36,13 @@ condition for a natural spline, with zero second derivative on that boundary.*/
         u[i]=(6.0*u[i]/(x[i+1]-x[i-1])-sig*u[i-1])/p;
     }
 
-  //if (ypn > 0.99e30) {//The upper boundary condition is set either to be“natural”
+  if (ypn > 0.99e30) {//The upper boundary condition is set either to be“natural”
     qn=un=0.0;
-  //}
-  //else { //or else to have a specified first derivative.
-  //  qn=0.5;
-  //  un=(3.0/(x[n-1]-x[n-2]))*(ypn-(y[n-1]-y[n-2])/(x[n-1]-x[n-2]));
-  //}
+  }
+  else { //or else to have a specified first derivative.
+    qn=0.5;
+    un=(3.0/(x[n-1]-x[n-2]))*(ypn-(y[n-1]-y[n-2])/(x[n-1]-x[n-2]));
+  }
   y2[n-1]=(un-qn*u[n-2])/(qn*y2[n-2]+1.0);
 
   for (k=n-2;k>-1;k--){ //This is the backsubstitution loop of the tridiagonal algorithm.

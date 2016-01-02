@@ -10,6 +10,7 @@ ypn are equal to 1 × 1030 or larger, the routine is signaled to set the corresp
 condition for a natural spline, with zero second derivative on that boundary.*/
 std::vector<double> spline(std::vector<double>&, std::vector<double>&);
 std::vector<double> spline(std::vector<double>&, std::vector<double>&, double);
+std::vector<double> spline(std::vector<double>&, std::vector<double>&, double, double);
 double splint(std::vector<double>&, std::vector<double>&, std::vector<double>&, double);
 double splintD(std::vector<double>&, std::vector<double>&, std::vector<double>&, double);
 #include "Spline.hpp"
