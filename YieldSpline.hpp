@@ -4,7 +4,7 @@ YieldSpline::YieldSpline(YieldCurve& yield_, Date& currDate, double r0_){
     yield=yield_;
     r0=r0_;
     computeYieldFunction(currDate);
-    
+
 }
 YieldSpline::YieldSpline(){
 }
@@ -18,7 +18,7 @@ void YieldSpline::getForwardCurve(){
     for(int i=2;i<n;++i){
         std::cout<<", {\"x\":"<<splineX[i]<<", \"y\":"<<Forward(splineX[i])<<"}";
     }
-    std::cout<<"]}"<<std::endl;
+    std::cout<<"]}\\n"<<std::endl;
 }
 void YieldSpline::getSpotCurve(){
     std::cout<<"{\"Spot\":["; //to send to node
@@ -27,7 +27,7 @@ void YieldSpline::getSpotCurve(){
     for(int i=2;i<n;++i){
         std::cout<<", {\"x\":"<<splineX[i]<<", \"y\":"<<splineY[i]/splineX[i]<<"}";
     }
-    std::cout<<"]}"<<std::endl;
+    std::cout<<"]}\\n"<<std::endl;
 }
 void YieldSpline::computeYieldFunction(Date& currDate){//Cubic Spline
     int n=yield.size();
