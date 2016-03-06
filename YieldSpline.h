@@ -5,6 +5,7 @@
 #include <iostream>
 #include "BondUtilities.h"
 #include "CurveFeatures.h"
+#include <sstream>//stringstream
 #include <unordered_map>
 
 typedef std::vector<SpotValue> YieldCurve;
@@ -25,8 +26,8 @@ private:
 public:
     YieldSpline(YieldCurve&, Date&, double);
     YieldSpline();
-    void getForwardCurve();
-    void getSpotCurve();
+    void getForwardCurve(auto&);
+    void getSpotCurve(auto&);
     void computeSimpleSwapSpline(LiborCurve&, SwapCurve&, Date&);
     void computeSimpleSwapSpline(LiborCurve&, SwapCurve&, Date&, double);
     void computeYieldFunction(Date&);

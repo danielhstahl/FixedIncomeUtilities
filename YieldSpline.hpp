@@ -11,23 +11,29 @@ YieldSpline::YieldSpline(){
 double YieldSpline::getShortRate(){
     return r0;
 }
-void YieldSpline::getForwardCurve(){
-    std::cout<<"{\"Forward\":["; //to send to node
-    std::cout<<"{\"x\":"<<splineX[1]<<", \"y\":"<<Forward(splineX[1])<<"}";
+void YieldSpline::getForwardCurve(auto& ws){
+    std::stringstream wsMessage;
+    
+    wsMessage<<"{\"Forward\":["; //to send to node
+    wsMessage<<"{\"x\":"<<splineX[1]<<", \"y\":"<<Forward(splineX[1])<<"}";
     int n=splineX.size();
     for(int i=2;i<n;++i){
-        std::cout<<", {\"x\":"<<splineX[i]<<", \"y\":"<<Forward(splineX[i])<<"}";
+        wsMessage<<", {\"x\":"<<splineX[i]<<", \"y\":"<<Forward(splineX[i])<<"}";
     }
-    std::cout<<"]}\\n"<<std::endl;
+    wsMessage<<"]}";
+    ws(wsMessage.str());
+    
 }
-void YieldSpline::getSpotCurve(){
-    std::cout<<"{\"Spot\":["; //to send to node
-    std::cout<<"{\"x\":"<<splineX[1]<<", \"y\":"<<splineY[1]/splineX[1]<<"}";
+void YieldSpline::getSpotCurve(auto& ws){
+    std::stringstream wsMessage;
+    wsMessage<<"{\"Spot\":["; //to send to node
+    wsMessage<<"{\"x\":"<<splineX[1]<<", \"y\":"<<splineY[1]/splineX[1]<<"}";
     int n=splineX.size();
     for(int i=2;i<n;++i){
-        std::cout<<", {\"x\":"<<splineX[i]<<", \"y\":"<<splineY[i]/splineX[i]<<"}";
+        wsMessage<<", {\"x\":"<<splineX[i]<<", \"y\":"<<splineY[i]/splineX[i]<<"}";
     }
-    std::cout<<"]}\\n"<<std::endl;
+    wsMessage<<"]}";
+    ws(wsMessage.str());
 }
 void YieldSpline::computeYieldFunction(Date& currDate){//Cubic Spline
     int n=yield.size();
