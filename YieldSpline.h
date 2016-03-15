@@ -5,6 +5,7 @@
 #include <iostream>
 #include "BondUtilities.h"
 #include "CurveFeatures.h"
+#include "Date.h"
 #include <sstream>//stringstream
 #include <unordered_map>
 
@@ -18,14 +19,19 @@ private:
   FutureCurve forwardCurve;
   std::vector<double> theta;
   double maxMaturity;
-  std::vector<double> splineX;
-  std::vector<double> splineY;
-  std::vector<double> splineZ;
+   std::vector<double> splineX;
+    std::vector<double> splineY;
+    std::vector<double> splineZ;
+    
   double r0;
   //char type[];
 public:
     YieldSpline(YieldCurve&, Date&, double);
     YieldSpline();
+    
+    
+   
+    
     void getForwardCurve(auto&);
     void getSpotCurve(auto&);
     void computeSimpleSwapSpline(LiborCurve&, SwapCurve&, Date&);

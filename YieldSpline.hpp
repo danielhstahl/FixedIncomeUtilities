@@ -53,13 +53,7 @@ void YieldSpline::computeYieldFunction(Date& currDate){//Cubic Spline
         splineX[i+1]=dt;
         splineY[i+1]=convertLiborToContinuous(yield[i].value, dt)*dt; //convert to continuous compounding ASSUMING that yield[i].value is a simple rate (not compounded at all), that is, 1/(1+yield*t)=bond.
   }
-  splineZ=spline(splineX, splineY, r0);//, .03777586); //TEMPOORARY
-  /*std::cout<<"{\"Spot\":";
-  getSpotCurve();
-  std::cout<<"}"<<std::endl;
-  std::cout<<"{\"Forward\":";
-  getForwardCurve();
-  std::cout<<"}"<<std::endl;*/
+  splineZ=spline(splineX, splineY, r0);
 }
 void YieldSpline::computeSimpleSwapSpline(LiborCurve &libor, SwapCurve &swap, Date& currDate){
     computeSimpleSwapSpline(libor, swap, currDate, .25);
