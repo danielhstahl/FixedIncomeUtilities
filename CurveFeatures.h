@@ -9,8 +9,11 @@
     double Tenor;
     std::vector<Date> Coupons;
     double CouponRate;
+    double currValue=0;
+    double expectedReturn=0;
+    double covariance=0;
     int type; //types are defined in HullWhiteEngine
-     
+
  };
  struct ForwardValue{
    Date beginDate;
